@@ -16,7 +16,7 @@ class AclAdminControlPanelServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $this->loadAutoloader(base_path('packages'));
+        //$this->loadAutoloader(base_path('packages'));
         // \App::register('Collective\Html\HtmlServiceProvider');
         // \App::register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
         // $this->app->booting(function()
