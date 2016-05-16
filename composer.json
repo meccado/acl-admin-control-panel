@@ -9,10 +9,6 @@
       "email": "tsw603gp@gmail.com"
     }
   ],
-  "require": {
-    "laravelcollective/html": "^5.2",
-    "intervention/image": "^2.3"
-  },
   "autoload": {
     "psr-4": {
       "Meccado\\AclAdminControlPanel\\": "src"
@@ -20,6 +16,8 @@
   },
   "require": {
     "illuminate/support": "~5.1",
-    "php" : "~5.5|~7.0"
+    "php" : "~5.5|~7.0",
+    "laravelcollective/html": "^5.2",
+    "intervention/image": "^2.3
   }
 }
