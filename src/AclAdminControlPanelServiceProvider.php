@@ -16,16 +16,16 @@ class AclAdminControlPanelServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //$this->loadAutoloader(base_path('packages'));
-        // \App::register('Collective\Html\HtmlServiceProvider');
-        // \App::register('Cviebrock\EloquentSluggable\SluggableServiceProvider');
-        // $this->app->booting(function()
-        // {
-        //     $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        //     $loader->alias('HTML', 'Collective\Html\HtmlFacade');
-        //     $loader->alias('Form', 'Collective\Html\FormFacade');
-        //     $loader->alias('Sluggable', 'Cviebrock\EloquentSluggable\Facades\Sluggable');
-        // });
+
+        // Register dependancy aliases
+        $this->app->booting(function()
+        {
+          $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+          $loader->alias('Form', 'Collective\Html\FormFacade');
+          $loader->alias('HTML', 'Collective\Html\HtmlFacade');
+          $loader->alias('Image', 'Intervention\Image\Facades\Image');
+        });
+
         $router->middleware('roles', \App\Http\Middleware\HasRole::class);
         $router->middleware('admin', \App\Http\Middleware\AdminMiddleware::class);
         if (! $this->app->routesAreCached()) {
@@ -98,6 +98,11 @@ class AclAdminControlPanelServiceProvider extends ServiceProvider
          $this->app->bind('acl', function($app){
             return new AclAdminControlPanel;
         });
+
+        //Register dependency packages
+         $this->app->register('Collective\Html\HtmlServiceProvider');
+         $this->app->register('Intervention\Image\ImageServiceProvider');
+
     }
 
 
@@ -112,7 +117,7 @@ class AclAdminControlPanelServiceProvider extends ServiceProvider
         $files = new Filesystem;
 
         $autoloads = $finder->in($path)->files()->name('autoload.php')->depth('<= 3')->followLinks();
-
+        dd($autoloads);
         foreach ($autoloads as $file)
         {
             $files->requireOnce($file->getRealPath());
