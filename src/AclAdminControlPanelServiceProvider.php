@@ -17,14 +17,14 @@ class AclAdminControlPanelServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
 
-        // Register dependancy aliases
-        $this->app->booting(function()
-        {
-          $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-          $loader->alias('Form', 'Collective\Html\FormFacade');
-          $loader->alias('HTML', 'Collective\Html\HtmlFacade');
-          $loader->alias('Image', 'Intervention\Image\Facades\Image');
-        });
+        // // Register dependancy aliases
+        // $this->app->booting(function()
+        // {
+        //   $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        //   $loader->alias('Form', 'Collective\Html\FormFacade');
+        //   $loader->alias('HTML', 'Collective\Html\HtmlFacade');
+        //   $loader->alias('Image', 'Intervention\Image\Facades\Image');
+        // });
 
         $router->middleware('roles', \App\Http\Middleware\HasRole::class);
         $router->middleware('admin', \App\Http\Middleware\AdminMiddleware::class);
