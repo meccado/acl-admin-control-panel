@@ -46,6 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <section class="content"><!-- Main content -->
                       <!-- Your Page Content Here -->
+                      @include('errors.error')
                       @yield('content')
                   </section><!-- /.content -->
 

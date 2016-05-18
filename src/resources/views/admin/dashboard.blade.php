@@ -12,6 +12,7 @@
 {{-- Content --}}
 @section('content')
     <div class="row">
+      
       @if (count($menu_items) > 0)
         @foreach(array_chunk($menu_items->items(), 3) as $index => $raw_menu_item)
           @foreach($raw_menu_item as $i => $menu_item)
@@ -41,7 +42,7 @@
             </div>
           @endforeach
         @endforeach
-      @elseif(Auth::check() && Auth::user()->isAmin())
+      @elseif(\Auth::check() && \Auth::user()->isAdmin())
         <div class="col-lg-3 col-xs-6">
             <div class="box box-primary "><!--bg-aqua-->
                 <div class="box-header with-border">

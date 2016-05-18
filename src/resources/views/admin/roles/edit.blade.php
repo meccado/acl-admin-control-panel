@@ -16,12 +16,6 @@
 		</div><!-- /.box-header -->
 
 		<div class="box-body"><!-- .box-body -->
-			<div class="row">
-		        <div class="col-sm-10 col-sm-offset-2">
-		            @include('acl::errors.error')
-		        </div>
-		    </div>
-
 		    @include('acl::admin.roles._form')
 		</div><!-- /.box-body -->
 

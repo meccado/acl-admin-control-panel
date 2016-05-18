@@ -65,9 +65,9 @@ class Role extends Model //implements SluggableInterface
   public function can($permission)
   {
     if (is_array($permission)) {
-      return (!! (count($permission) == count(array_intersect($this->getPermissions()->lists('name')->toarray(), $permission))));
+      return (!! (count($permission) == count(array_intersect($this->permissions()->lists('name')->toarray(), $permission))));
     } else {
-      return in_array($permission, $this->getPermissions()->lists('name')->toarray());
+      return in_array($permission, $this->permissions()->lists('name')->toarray());
     }
   }
 
@@ -79,6 +79,6 @@ class Role extends Model //implements SluggableInterface
   */
   public function canAtLeast(array $permission = array())
   {
-    return (!! (count(array_intersect($this->getPermissions()->lists('name')->toarray(), $permission)) > 0));
+    return (!! (count(array_intersect($this->permissions()->lists('name')->toarray(), $permission)) > 0));
   }
 }

@@ -63,7 +63,7 @@ class UserController extends Controller
     $input['password'] = Hash::make($input['password']);
     $user = $this->users->create($input);
     return \Redirect::route('admin.users.index', [
-      ])->withMessage(trans('acl-admin-control-panel::admin.users-controller-successfully_created'));
+      ])->withMessage(trans('acl::user.users-controller-successfully_created'));
     }
 
     /**
@@ -112,7 +112,7 @@ class UserController extends Controller
       $input['password'] = Hash::make($input['password']);
       $user->update($input);
       return \Redirect::route('admin.users.index', [
-        ])->withMessage(trans('acl-admin-control-panel::admin.users-controller-successfully_updated'));
+        ])->withMessage(trans('acl::user.users-controller-successfully_updated'));
       }
 
       /**
@@ -126,6 +126,6 @@ class UserController extends Controller
         $user = $this->users->findOrFail($id);
         User::destroy($id);
         return \Redirect::route('admin.users.index', [
-          ])->withMessage(trans('acl-admin-control-panel::admin.users-controller-successfully_deleted'));
+          ])->withMessage(trans('acl::user.users-controller-successfully_deleted'));
         }
       }

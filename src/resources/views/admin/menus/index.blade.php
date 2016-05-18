@@ -26,7 +26,6 @@
             </div><!-- /.box-header -->
 
             <div class="box-body"><!-- box-body -->
-                @include('acl::errors.error')
                 @include('acl::admin.menus._table')
             </div><!-- /.box-body -->
 

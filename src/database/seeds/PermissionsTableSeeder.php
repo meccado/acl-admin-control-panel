@@ -14,31 +14,29 @@ class PermissionsTableSeeder extends Seeder
       $admin_role = Role::where('name','=','admin')->first();
       $user_role = Role::where('name','=','user')->first();
 
-      $read_user_permission = Permission::create( [
-                    'name' => 'user-read',
-                    'label' => 'View User Permission',
+      $read_menu_permission = Permission::create( [
+                    'name' => 'menu-read',
+                    'label' => 'View Menu Permission',
                 ]);
-      $create_user_permission = Permission::create( [
-                    'name' => 'user-create',
-                    'label' => 'Create User Permission',
+      $create_menu_permission = Permission::create( [
+                    'name' => 'menu-create',
+                    'label' => 'Create Menu Permission',
                 ]);
-      $update_user_permission = Permission::create( [
-                    'name' => 'user-update',
-                    'label' => 'Update User Permission',
+      $update_menu_permission = Permission::create( [
+                    'name' => 'menu-update',
+                    'label' => 'Update Menu Permission',
                 ]);
-      $delete_user_permission = Permission::create( [
-                    'name' => 'user-delete',
-                    'label' => 'Delete User Permission',
+      $delete_menu_permission = Permission::create( [
+                    'name' => 'menu-delete',
+                    'label' => 'Delete Menu Permission',
                 ]);
 
-      $super_admin_role->permissions()->attach($read_user_permission);
-      $super_admin_role->permissions()->attach($create_user_permission);
-      $super_admin_role->permissions()->attach($update_user_permission);
-      $super_admin_role->permissions()->attach($delete_user_permission);
+      $super_admin_role->permissions()->attach($read_menu_permission);
+      $super_admin_role->permissions()->attach($create_menu_permission);
+      $super_admin_role->permissions()->attach($update_menu_permission);
+      $super_admin_role->permissions()->attach($delete_menu_permission);
 
-      $admin_role->permissions()->attach($update_user_permission);
-
-      $user_role->permissions()->attach($read_user_permission);
+      $admin_role->permissions()->attach($read_menu_permission);
 
     }
 }

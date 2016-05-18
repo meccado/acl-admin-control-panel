@@ -58,7 +58,7 @@ class PermissionController extends Controller
     Permission::create($request->all());
     \Session::flash('flash_message', 'Permission added!');
     return \Redirect::route('api.v1.permissions.index', [
-      ])->withMessage(trans('acl-admin-control-panel::admin.permissions-controller-successfully_created'));
+      ])->withMessage(trans('acl::permission.permissions-controller-successfully_created'));
     }
 
     /**
@@ -100,7 +100,7 @@ class PermissionController extends Controller
       $permission = Permission::findOrFail($id)->update($request->only('name', 'label'));
       \Session::flash('flash_message', 'Permission updated!');
       return \Redirect::route('admin.permissions.index', [
-        ])->withMessage(trans('acl::admin.permissions-controller-successfully_updated'));
+        ])->withMessage(trans('acl::permission.permissions-controller-successfully_updated'));
       }
 
       /**
@@ -114,6 +114,6 @@ class PermissionController extends Controller
         Permission::destroy($id);
         \Session::flash('flash_message', 'Permission deleted!');
         return \Redirect::route('admin.permissions.index', [
-          ])->withMessage(trans('acl::admin.permissions-controller-successfully_deleted'));
+          ])->withMessage(trans('acl::permission.permissions-controller-successfully_deleted'));
         }
       }

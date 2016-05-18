@@ -57,7 +57,7 @@ class RoleController extends Controller
     {
         $this->roles->create($request->only('name', 'label'));
         return \Redirect::route('admin.roles.index', [
-         ])->withMessage(trans('acl::admin.roles-controller-successfully_created'));
+         ])->withMessage(trans('acl::role.roles-controller-successfully_created'));
     }
 
     /**
@@ -98,7 +98,7 @@ class RoleController extends Controller
     {
         $this->roles->findOrFail($id)->update($request->only('name', 'label'));
         return \Redirect::route('admin.roles.index', [
-         ])->withMessage(trans('acl::admin.roles-controller-successfully_updated'));
+         ])->withMessage(trans('acl::role.roles-controller-successfully_updated'));
     }
 
     /**
@@ -111,6 +111,6 @@ class RoleController extends Controller
     {
         $this->roles->findOrFail($id)->delete();
         return \Redirect::route('admin.roles.index', [
-         ])->withMessage(trans('acl::admin.roles-controller-successfully_deleted'));
+         ])->withMessage(trans('acl::role.roles-controller-successfully_deleted'));
     }
 }

@@ -30,13 +30,16 @@ class MenuController extends Controller
   */
   public function index()
   {
-    $items = $this->menus->with('roles')
-                        ->where('parent_id', '=', '0')
-                        ->orderBy('sort_order', 'ASC')->get();
-    return \View::make('acl::admin.menus.index', [
-      'items'   =>  $items,
-      'title'   => 'list',
-    ]);
+    if ( \Auth::user()->roles[0]->can('menu-read' ) ) {
+      $items = $this->menus->with('roles')
+      ->where('parent_id', '=', '0')
+      ->orderBy('sort_order', 'ASC')->get();
+      return \View::make('acl::admin.menus.index', [
+        'items'   =>  $items,
+        'title'   => 'list',
+      ]);
+    }
+    return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
   }
 
   /**
@@ -46,15 +49,18 @@ class MenuController extends Controller
   */
   public function create()
   {
-    $items = $this->menus->lists('name', 'id')->toarray();
-    $roles = Role::lists('name', 'id')->toarray();
-    $selected = [];
-    return \View::make('acl::admin.menus.create', [
-      'items'    =>  $items,
-      'roles'    =>  $roles,
-      'selected' =>  $selected,
-      'title'    => 'create',
-    ]);
+    if ( \Auth::user()->roles[0]->can('menu-create' ) ) {
+      $items = $this->menus->lists('name', 'id')->toarray();
+      $roles = Role::lists('name', 'id')->toarray();
+      $selected = [];
+      return \View::make('acl::admin.menus.create', [
+        'items'    =>  $items,
+        'roles'    =>  $roles,
+        'selected' =>  $selected,
+        'title'    => 'create',
+      ]);
+    }
+    return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
   }
 
   /**
@@ -65,78 +71,94 @@ class MenuController extends Controller
   */
   public function store(Request $request)
   {
-    $input = $request->all();
-    $input['url'] = "admin/".str_plural(Str::lower($input['name'] != 'Dashboard' ? $input['name'] : ''));
-    $menu = $this->menus->create($input);
-    foreach ($request->roles as $_id) {
+    if ( \Auth::user()->roles[0]->can('menu-create' ) ) {
+      $input = $request->all();
+      $input['url'] = "admin/".str_plural(Str::lower($input['name'] != 'Dashboard' ? $input['name'] : ''));
+      $menu = $this->menus->create($input);
+      foreach ($request->roles as $_id) {
         $role = Role::whereId($_id)->first();
         $menu->assign($role);
+      }
+      \Session::flash('flash_message', 'Menu added!');
+      return \Redirect::route('admin.menus.index', [
+        ])->withMessage(trans('acl::menu.menus-controller-successfully_created'));
+      }
+      return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
     }
-    \Session::flash('flash_message', 'Menu added!');
-    return \Redirect::route('admin.menus.index', [
-      ])->withMessage(trans('acl::admin.menus-controller-successfully_created'));
-  }
 
-  /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function show($id)
-  {
-    $menu = $this->menus->findOrFail($id);
-    return view('admin.menus.show', compact('menu'));
-  }
-
-  /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function edit($id)
-  {
-    $menu = $this->menus->findOrFail($id);
-    $items = $this->menus->lists('name', 'id')->toarray();
-    $roles = Role::lists('name', 'id')->toarray();
-    $selected = $menu->roles->lists('id')->toarray();
-    return view('admin.menus.edit', compact('menu', 'selected', 'roles', 'items'));
-  }
-
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function update(Request $request, $id)
-  {
-    $input = $request->all();
-    $input['url'] = "admin/".str_plural(Str::lower($input['name'] != 'Dashboard' ? $input['name'] : ''));
-    $menu = $this->menus->findOrFail($id);
-    $menu->update($input);
-    $menu->roles()->detach();
-    foreach ($request->roles as $_id) {
-        $role = Role::whereId($_id)->first();
-        $menu->assign($role);
+    /**
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function show($id)
+    {
+      if ( \Auth::user()->roles[0]->can('menu-read' ) ) {
+        $menu = $this->menus->findOrFail($id);
+        return view('admin.menus.show', compact('menu'));
+      }
+      return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
     }
-    \Session::flash('flash_message', 'Menu updated!');
-    return \Redirect::route('admin.menus.index', [
-      ])->withMessage(trans('acl::admin.menus-controller-successfully_updated'));
-  }
 
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function destroy($id)
-  {
-    $this->menus->findOrFail($id)->delete();
-    return \Redirect::route('admin.menus.index', [
-     ])->withMessage(trans('acl::admin.menus-controller-successfully_deleted'));
-  }
-}
+    /**
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function edit($id)
+    {
+      if ( \Auth::user()->roles[0]->can('menu-update' ) ) {
+        $menu = $this->menus->findOrFail($id);
+        $items = $this->menus->lists('name', 'id')->toarray();
+        $roles = Role::lists('name', 'id')->toarray();
+        $selected = $menu->roles->lists('id')->toarray();
+        return view('admin.menus.edit', compact('menu', 'selected', 'roles', 'items'));
+      }
+      return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
+
+    }
+
+    /**
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function update(Request $request, $id)
+    {
+      if ( \Auth::user()->roles[0]->can('menu-update' ) ) {
+        $input = $request->all();
+        $input['url'] = "admin/".str_plural(Str::lower($input['name'] != 'Dashboard' ? $input['name'] : ''));
+        $menu = $this->menus->findOrFail($id);
+        $menu->update($input);
+        $menu->roles()->detach();
+        foreach ($request->roles as $_id) {
+          $role = Role::whereId($_id)->first();
+          $menu->assign($role);
+        }
+        \Session::flash('flash_message', 'Menu updated!');
+        return \Redirect::route('admin.menus.index', [
+          ])->withMessage(trans('acl::menu.menus-controller-successfully_updated'));
+        }
+        return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
+      }
+
+      /**
+      * Remove the specified resource from storage.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
+      public function destroy($id)
+      {
+        if ( \Auth::user()->roles[0]->can('menu-delete' ) ) {
+          $this->menus->findOrFail($id)->delete();
+          return \Redirect::route('admin.menus.index', [
+            ])->withMessage(trans('acl::menu.menus-controller-successfully_deleted'));
+          }
+          return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
+        }
+      }
