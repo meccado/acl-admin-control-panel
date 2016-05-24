@@ -21,9 +21,9 @@ class UsersTableSeeder extends Seeder
           'name' => 'Administrator' ,
       ] );
       User::create( [
-          'email' => 'tsw603gp@gmail.com' ,
+          'email' => 'user@gmail.com' ,
           'password' => Hash::make( 'password' ) ,
-          'name' => 'Moeketsi Mokoena' ,
+          'name' => 'General User' ,
       ] );
     }
 }

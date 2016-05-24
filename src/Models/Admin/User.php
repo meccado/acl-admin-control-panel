@@ -25,7 +25,13 @@ class User extends Authenticatable{
 
 
     public function roles(){
-      return $this->belongsToMany('App\Role');
+      return $this->belongsToMany(\App\Role::class);
+    }
+
+    // User profile relationship
+    public function profile()
+    {
+        return $this->hasOne(\App\Profile::class);
     }
 
     public function isAdmin()

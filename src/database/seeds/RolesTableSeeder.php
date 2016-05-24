@@ -25,7 +25,7 @@ class RolesTableSeeder extends Seeder
                 ]);
         $admin_user->roles()->attach($admin_role);
 
-        $general_user = User::where('email','=','tsw603gp@gmail.com')->first();
+        $general_user = User::where('email','=','user@gmail.com')->first();
         $user_role = Role::create( [
                     'name' => 'user',
                     'label' => 'User',

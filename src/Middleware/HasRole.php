@@ -23,12 +23,12 @@ class HasRole
         if ($request->user()->hasRole($roles) || !$roles) {
             return $next($request);
         }
-        return response([
+        return $request->ajax ? response([
             'error' => [
                 'code' => 'INSUFFICIENT_ROLE',
                 'description' => 'You are not authorized to access this resource.',
             ],
-        ], 401);
+        ], 401) : redirect('/login');
     }
 
     /**

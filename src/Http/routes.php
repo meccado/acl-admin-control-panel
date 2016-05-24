@@ -29,6 +29,8 @@ Route::group(['namespace' 	=> 'App\Http\Controllers',
 					Route::get('profiles', ['as' => 'admin.profiles', 'uses' => 'Admin\\AdminController@profile']);
 
 					Route::resource('menus',  'Admin\MenuController');
+
+					Route::get('/profiles/{username}', 'ProfileController@show');
 			});
 });
 
