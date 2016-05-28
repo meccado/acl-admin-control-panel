@@ -71,6 +71,11 @@ class AclAdminControlPanelServiceProvider extends ServiceProvider
 
     $this->publishes([
       __DIR__ . '/Http/Controllers/Auth/'    => app_path('/Http/Controllers/Auth/'),
+      __DIR__ . '/Http/Requests/'    => app_path('/Http/Requests/'),
+    ], 'requests');
+
+    $this->publishes([
+      __DIR__ . '/Http/Controllers/Auth/'    => app_path('/Http/Controllers/Auth/'),
       __DIR__ . '/Http/Controllers/Admin/'    => app_path('/Http/Controllers/Admin/'),
     ], 'controllers');
     $this->publishes([
