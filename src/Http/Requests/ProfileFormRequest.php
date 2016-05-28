@@ -38,7 +38,7 @@ class ProfileFormRequest extends Request
                     'address'     => 'required|min:3|max:160',
                     'city'        => 'required|min:3|max:60',
                     'state'       => 'required|min:3|max:60',
-                    'zip'         => 'required|size:4|integer',
+                    'zip'         => 'required|max_length:4|integer',
                 ];
             }
             case 'PUT':
@@ -50,7 +50,7 @@ class ProfileFormRequest extends Request
                     'address'     => 'required|min:3|max:160',
                     'city'        => 'required|min:3|max:60',
                     'state'       => 'required|min:3|max:60',
-                    'zip'         => 'required|size:4|integer',
+                    'zip'         => 'required|max_length:4|integer',
                 ];
             }
             default:break;
