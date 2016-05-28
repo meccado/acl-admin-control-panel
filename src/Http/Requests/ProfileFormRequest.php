@@ -28,17 +28,23 @@ class ProfileFormRequest extends Request
             case 'POST':
             {
                 return [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'password' => 'required|confirmed|min:6',
+                    'bio'         => 'required|min:3|max:255',
+                    'experience'  => 'required|min:3|max:60',
+                    'address'     => 'required|min:3|max:160',
+                    'city'        => 'required|min:3|max:60',
+                    'state'       => 'required|min:3|max:60',
+                    'zip'         => 'required|size:5|integer',
                 ];
             }
             case 'PATCH':
             {
                 return [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'password' => 'required|confirmed|min:6',
+                  'bio'         => 'required|min:3|max:255',
+                  'experience'  => 'required|min:3|max:60',
+                  'address'     => 'required|min:3|max:160',
+                  'city'        => 'required|min:3|max:60',
+                  'state'       => 'required|min:3|max:60',
+                  'zip'         => 'required|size:5|integer',
                 ];
             }
         }
