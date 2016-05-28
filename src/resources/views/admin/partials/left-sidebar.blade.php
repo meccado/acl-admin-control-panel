@@ -6,10 +6,14 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="{{ URL::asset('assets/bower_components/AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+        @if($user->profile->avatar != null)
+          <img src="{{ URL::asset($user->profile->avatar)}}" class="img-circle" alt="User Image">
+        @else
+          <img src="{{ URL::asset('assets/bower_components/AdminLTE/dist/img/default.png')}}" class="img-circle" alt="User Image">
+        @endif
       </div>
       <div class="pull-left info">
-        <p>{{\Auth::user() != null ? \Auth::user()->name : "Alexander Pierce"}}</p>
+        <p>{{$user != null ? $user->name : "Alexander Pierce"}}</p>
         <!-- Status -->
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>

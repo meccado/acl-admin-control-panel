@@ -30,13 +30,21 @@ Route::group(['namespace' 	=> 'App\Http\Controllers',
 
 					Route::resource('menus',  'Admin\MenuController');
 
-					Route::get('/profiles/{username}', 'ProfileController@show');
+					//Route::resource('profiles', 'Admin\ProfileController', ['only' => ['index', 'edit', 'update']]);
 			});
+
+			Route::group(['prefix' =>  'admin',], function(){
+					//Route::get('profile', ['as' => 'profile.show', 'uses' => 'Admin\ProfileController@showProfile']);
+					Route::patch('profile/{profile}', ['as' => 'profile.update', 'uses' => 'Admin\ProfileController@updateProfile']);
+					Route::get('profile/{profile?}', ['as' => 'profile.show', 'uses' => 'Admin\ProfileController@show']);
+					Route::patch('profile/{profile}/upload', ['as' => 'profile.avatar', 'uses' => 'Admin\ProfileController@updateImage']);
+				});
 });
 
 View::composer('acl::*', function ($view) {
 	$menus = [];
 	$menu_items = [];
+	$user = [];
 	if(Auth::check()){
 		$menus = \App\Menu::whereHas('roles', function($q)
 		{
@@ -52,6 +60,8 @@ View::composer('acl::*', function ($view) {
 				//->where('parent_id', 0);
 		})->orderBy('sort_order', 'ASC')->distinct()->paginate();
 		//dd(count($menu_items));
+		$userId = \Auth::user()->id;
+		$user = \App\User::with('profile')->findOrFail($userId);
 	}
-	$view->with(compact('menus', 'menu_items'));
+	$view->with(compact('menus', 'menu_items', 'user'));
 });

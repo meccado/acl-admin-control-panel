@@ -62,6 +62,14 @@ class UserController extends Controller
     $input = $request->all();
     $input['password'] = Hash::make($input['password']);
     $user = $this->users->create($input);
+
+    //create Blank profile
+    $profile = Profile::create([
+      'user_id' => $user->id,
+      'bio'     => '',
+    ]);
+    $profile->save();
+
     return \Redirect::route('admin.users.index', [
       ])->withMessage(trans('acl::user.users-controller-successfully_created'));
     }

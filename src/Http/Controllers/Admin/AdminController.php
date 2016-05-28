@@ -30,7 +30,9 @@ class AdminController extends Controller
   //\Illuminate\Routing\Router $router
   public function index()
   {
+    $user = \App\User::with('profile')->findOrFail(\Auth::user()->id);
     return \View::make('acl::admin.dashboard', [
+      'user'              => $user,
       'title'              => 'list',
     ]);
   }
