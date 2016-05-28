@@ -28,7 +28,21 @@ php artisan vendor:publish  --force --provider="Meccado\AclAdminControlPanel\Acl
 Migrate & Seed database files with:
 
 ```php
+composer dump-autoload
 php artisan migrate --seed
+```
+
+
+```php
+Admin Login: http://localhost:8000/admin
+
+Super Admin
+User: super@domain.com
+Password: password
+
+Admin
+User: admin@domain.com
+Password: password
 ```
 
 ## License
