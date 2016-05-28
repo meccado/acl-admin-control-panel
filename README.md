@@ -1,8 +1,8 @@
 # Acl Admin- Control Panel Laravel 5 package
 
-## Install
+## Install & Configure
 
-Via Composer
+#####  with Composer
 
 ``` bash
 <pre>
@@ -19,20 +19,20 @@ To register the Service Provider edit **config/app.php** file and add to provide
 Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider::class,
 ```
 
-Publish files with:
+##### Publish files with:
 
 ```php
 php artisan vendor:publish  --force --provider="Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider"
 ```
 
-Migrate & Seed database files with:
+##### Migrate & Seed database files with:
 
 ```php
 composer dump-autoload
 php artisan migrate --seed
 ```
 
-Admin Login Page & Credentials
+##### Admin Login Page & Credentials
 
 ```php
 Admin Login: http://localhost:8000/admin
