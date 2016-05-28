@@ -2,7 +2,7 @@
 
 namespace Meccado\AclAdminControlPanel\Http\Requests;
 
-use App\Http\Requests\Request;
+use Meccado\AclAdminControlPanel\Http\Requests\Request;
 
 class UserFormRequest extends Request
 {
