@@ -32,6 +32,7 @@ composer dump-autoload
 php artisan migrate --seed
 ```
 
+Admin Login Page & Credentials
 
 ```php
 Admin Login: http://localhost:8000/admin
