@@ -25,13 +25,25 @@ class ProfileImageFormRequest extends Request
     {
         switch($this->method())
         {
-            dd($this->method(), $this);
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'avatar' => "required|image|mimes:jpeg,bmp,png,jpg",
+                ];
+            }
+            case 'PUT':
             case 'PATCH':
             {
                 return [
                     'avatar' => "required|image|mimes:jpeg,bmp,png,jpg",
                 ];
             }
+            default:break;
         }
     }
 }

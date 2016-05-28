@@ -25,6 +25,11 @@ class ProfileFormRequest extends Request
     {
         switch($this->method())
         {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
             case 'POST':
             {
                 return [
@@ -33,20 +38,22 @@ class ProfileFormRequest extends Request
                     'address'     => 'required|min:3|max:160',
                     'city'        => 'required|min:3|max:60',
                     'state'       => 'required|min:3|max:60',
-                    'zip'         => 'required|size:5|integer',
+                    'zip'         => 'required|size:4|integer',
                 ];
             }
+            case 'PUT':
             case 'PATCH':
             {
                 return [
-                  'bio'         => 'required|min:3|max:255',
-                  'experience'  => 'required|min:3|max:60',
-                  'address'     => 'required|min:3|max:160',
-                  'city'        => 'required|min:3|max:60',
-                  'state'       => 'required|min:3|max:60',
-                  'zip'         => 'required|size:5|integer',
+                    'bio'         => 'required|min:3|max:255',
+                    'experience'  => 'required|min:3|max:60',
+                    'address'     => 'required|min:3|max:160',
+                    'city'        => 'required|min:3|max:60',
+                    'state'       => 'required|min:3|max:60',
+                    'zip'         => 'required|size:4|integer',
                 ];
             }
+            default:break;
         }
     }
 }
