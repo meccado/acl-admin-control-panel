@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Http\Request\ProfileImageFormRequest;
-use Illuminate\Http\Request\ProfileFormRequest;
+use Meccado\AclAdminControlPanel\Http\Requests\ProfileImageFormRequest;
+use Meccado\AclAdminControlPanel\Http\Requests\ProfileFormRequest;
 use App\Http\Controllers\Controller;
 use App\Profile as Profile;
 use App\User as User;
