@@ -13,19 +13,20 @@
   <tbody>
     @foreach ($items as $item)
       <tr>
-        <tr><th>{{$item->id}}</th>
-          <td><a href="{{ url('admin/menus', $item->id) }}">{{ $item->name }}</a>
-            <span class="badge progress-bar-success pull-right">
-              sub menu item(s) :: ({{$item->children != null ? count($item->children) : 0}})
-            </span>
-          </td>
-          <td>{{ $item->parent_id }}</td>
-          <td>{{ $item->sort_order }}</td>
-          <td>
-            @foreach($item->roles as $index => $role)
-              {{ $role->name }},
-            @endforeach
-          </td>
+        <tr>
+            <th>{{$item->id}}</th>
+            <td><a href="{{ url('admin/menus', $item->id) }}">{{ $item->name }}</a>
+              <span class="badge progress-bar-success pull-right">
+                sub menu item(s) :: ({{$item->children != null ? count($item->children) : 0}})
+              </span>
+            </td>
+            <td>{{ $item->parent_id }}</td>
+            <td>{{ $item->sort_order }}</td>
+            <td>
+              @foreach($item->roles as $index => $role)
+                {{ $role->name }},
+              @endforeach
+            </td>
           <td>
             <div class="row">
               <div class="col-md-1">
@@ -54,6 +55,51 @@
                 </div>
               </td>
             </td>
+              @foreach ($item->children as $child)
+             <tr>
+               <th>{{$child->id}}</th>
+               <td><a href="{{ url('admin/menus', $child->id) }}">{{ $child->name }}</a>
+                 <span class="badge progress-bar-success pull-right">
+                   sub menu item(s) :: ({{$child->children != null ? count($child->children) : 0}})
+                 </span>
+               </td>
+               <td>{{ $child->parent_id }}</td>
+               <td>{{ $child->sort_order }}</td>
+               <td>
+                 @foreach($child->roles as $index => $role)
+                   {{ $role->name }},
+                 @endforeach
+               </td>
+             <td>
+               <div class="row">
+                 <div class="col-md-1">
+                   <a href="{{route('admin.menus.show', ['id'=>$child->id])}}"
+                     data-toggle="tooltip"
+                     data-original-title="{!! trans('menu.menus-view_tooltip') !!}"
+                     class="btn btn-primary btn-flat"><i class="fa fa-eye"></i></a>
+                   </div>
+                   <div class="col-md-2 col-md-offset-1">
+                     <a href="{{route('admin.menus.edit',['id'=>$child->id])}}"
+                       data-toggle="tooltip"
+                       data-original-title="{!! trans('menu.menus-update_tooltip') !!}"
+                       class="btn btn-info btn-flat"><i class="fa fa-pencil"></i></a>
+                     </div>
+                     <div class="col-md-2 col-md-offset-1">
+                       {!! Form::open(['route' => ['admin.menus.destroy', $child->id],
+                         'class' => 'form-horizontal confirm',
+                         'role' => 'form', 'method' => 'DELETE']) !!}
+                         <button data-toggle="tooltip"
+                         data-original-title="{{trans('menu.menus-delete_tooltip') }}"
+                         type="submit" class="btn btn-danger confirm-btn btn-flat">
+                         <i class="fa fa-trash-o"></i>
+                       </button>
+                       {!! Form::close() !!}
+                     </div>
+                   </div>
+                 </td>
+               </td>
+              </tr>
+             @endforeach
           </tr>
         @endforeach
       </tbody>
