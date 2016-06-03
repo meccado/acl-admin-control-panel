@@ -4,7 +4,9 @@
 Introduction
 ============
 
-[![Packagist](https://img.shields.io/packagist/v/meccado/acl-admin-control-panel.svg)](https://packagist.org/packages/meccado/acl-admin-control-panel)
+[![Latest Stable Version](https://poser.pugx.org/unisharp/laravel-filemanager/v/stable)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Total Downloads](https://poser.pugx.org/unisharp/laravel-filemanager/downloads)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Latest Unstable Version](https://poser.pugx.org/unisharp/laravel-filemanager/v/unstable)](https://packagist.org/packages/meccado/acl-admin-control-panel)
+
+
 
 ## Overview
  * The project was forked from [almasaeed2010/AdminLTE] (https://github.com/almasaeed2010/AdminLTE)
