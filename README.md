@@ -4,7 +4,7 @@
 Introduction
 ============
 
-[![Latest Stable Version](https://poser.pugx.org/unisharp/laravel-filemanager/v/stable)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Total Downloads](https://poser.pugx.org/unisharp/laravel-filemanager/downloads)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Latest Unstable Version](https://poser.pugx.org/unisharp/laravel-filemanager/v/unstable)](https://packagist.org/packages/meccado/acl-admin-control-panel)
+[![Latest Stable Version](https://poser.pugx.org/meccado/acl-admin-control-panel/v/stable)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Total Downloads](https://poser.pugx.org/meccado/acl-admin-control-panel/downloads)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Latest Unstable Version](https://poser.pugx.org/meccado/acl-admin-control-panel/v/unstable)](https://packagist.org/packages/meccado/acl-admin-control-panel)
 
 
 
