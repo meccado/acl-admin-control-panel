@@ -1,35 +1,49 @@
 # Acl Admin- Control Panel Laravel 5 package
 
+
+##  Introduction
+    ============
+
+[![Packagist](https://img.shields.io/packagist/v/meccado/acl-admin-control-panel.svg)](https://packagist.org/packages/meccado/acl-admin-control-panel)
+## Overview
+
+ * The project was forked from [almasaeed2010/AdminLTE] (https://github.com/almasaeed2010/AdminLTE)
+
 ## Install & Configure
 
 #####  with Composer
 
 ``` bash
-<pre>
+
  $ composer require "meccado/acl-admin-control-panel"
-</pre>
+
 ```
 
 To register the Service Provider edit **config/app.php** file and add to providers array:
 
 ```php
-/*
-* Acl Admin Control Panel template service provider
- */
+ /*
+  * Acl Admin Control Panel template service provider
+  */
 Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider::class,
 ```
 
 ##### Publish files with:
 
 ```php
-php artisan vendor:publish  --force --provider="Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider"
+
+$ php artisan vendor:publish  --force --provider="Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider"
+
 ```
 
 ##### Migrate & Seed database files with:
 
 ```php
-composer dump-autoload
-php artisan migrate --seed
+
+$ composer dump-autoload
+
+$ php artisan migrate --seed
+
 ```
 
 ##### Admin Login Page & Credentials
