@@ -8,7 +8,7 @@
 @section('content')
   <div class="register-box">
     <div class="register-logo">
-      <a href="{{ url('register') }}"><b>Admin</b>LTE</a>
+      <a href="{{ url('register') }}"><b>Admin Control Panel</b>ACL</a>
     </div>
 
     <div class="register-box-body">

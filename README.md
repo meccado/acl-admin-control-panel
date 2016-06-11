@@ -1,13 +1,10 @@
 # Acl Admin- Control Panel Laravel 5 package
-
-
-Introduction
-============
+============================================
 
 [![Latest Stable Version](https://poser.pugx.org/meccado/acl-admin-control-panel/v/stable)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Total Downloads](https://poser.pugx.org/meccado/acl-admin-control-panel/downloads)](https://packagist.org/packages/meccado/acl-admin-control-panel) [![Latest Unstable Version](https://poser.pugx.org/meccado/acl-admin-control-panel/v/unstable)](https://packagist.org/packages/meccado/acl-admin-control-panel)
 
-
-
+Introduction
+============
 ## Overview
  * The project was forked from [almasaeed2010/AdminLTE] (https://github.com/almasaeed2010/AdminLTE)
 

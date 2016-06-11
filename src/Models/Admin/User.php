@@ -52,7 +52,7 @@ class User extends Authenticatable{
 
     public function assign($role){
     if(is_string($role)){
-          return $this->roles()->save(Role::whereName($role)->findOrFail()
+          return $this->roles()->save(Role::where('name','=',$role)->first()
         );
       }
       return $this->roles()->save($role);
