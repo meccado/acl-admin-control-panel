@@ -73,7 +73,7 @@ class MenuController extends Controller
   {
     if ( \Auth::user()->roles[0]->can('menu-create' ) ) {
       $input = $request->all();
-      $input['url'] = "admin/".str_plural(Str::lower($input['name'] != 'Dashboard' ? $input['name'] : ''));
+      $input['url'] = "admin/".str_plural(Str::lower($input['name'] != 'Dashboard' ? $string=str_replace(" ","_", $input['name']) : ''));
       $menu = $this->menus->create($input);
       foreach ($request->roles as $_id) {
         $role = Role::whereId($_id)->first();
