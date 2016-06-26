@@ -2,7 +2,7 @@
 <div class="post">
   <div class="user-block">
     @if ($user->profile->avatar)
-      <img class="img-circle img-bordered-sm" src="{{ $user->profile->avatar}}" alt="user image">
+      <img class="img-circle img-bordered-sm" src="{{URL::asset($user->profile->avatar)}}" alt="user image">
     @else
       <img class="img-circle img-bordered-sm" src="{{ URL::asset('assets/bower_components/AdminLTE/dist/img/default.png')}}" alt="user image">
     @endif

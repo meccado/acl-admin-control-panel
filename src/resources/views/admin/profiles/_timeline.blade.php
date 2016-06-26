@@ -16,7 +16,7 @@
       <h3 class="timeline-header"><a href="#">{{$user->name}}</a> {{$user->profile->avatar != null ?'uploaded new profile photos' : 'updated profile ' }} </h3>
       <div class="timeline-body">
         @if ($user->profile->avatar)
-            <img src="{{$user->profile->avatar}}" width="150" height="100" alt="{{$user->profile->file_name}}" class="margin">
+            <img src="{{ URL::asset($user->profile->avatar)}}" width="150" height="100" alt="{{$user->profile->file_name}}" class="margin">
         @endif
       </div>
     </div>

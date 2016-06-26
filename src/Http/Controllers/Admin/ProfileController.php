@@ -96,20 +96,19 @@ class ProfileController extends Controller
         // REMOVE OLD AVATAR:
         if ($user->profile->avatar != NULL) {
             // DELETE FROM THE DIRECTORY:
-            File::delete(public_path($user->profile->avatar) );
+            File::delete($user->profile->avatar);
             // DELETE FROM THE DATABASE:
             $user->profile->avatar= null;
         }
-      if (!File::exists(public_path('assets/images/avatars')))
+      if (!File::exists('assets/images/avatars'))
       {
-          File::makeDirectory(public_path('assets/images/avatars'), $mode = 0777, true, true);
+          File::makeDirectory('assets/images/avatars', $mode = 0777, true, true);
       }
       $avatar = $request->file('avatar');
       $filename = time() . '.' . $avatar->getClientOriginalExtension();
-      Image::make($avatar)->resize(300, 300)->save( public_path('/assets/images/avatars/' . $filename ) );
-
+      Image::make($avatar)->resize(300, 300)->save('assets/images/avatars/' . $filename);
       $profile = $user->profile;
-      $profile->avatar = '/assets/images/avatars/' . $filename;
+      $profile->avatar = 'assets/images/avatars/' . $filename;
       $profile->bio = Input::get('bio');
       $profile->update();
     }
@@ -147,18 +146,18 @@ class ProfileController extends Controller
         // REMOVE OLD AVATAR:
         if ($user->profile->avatar != NULL) {
             // DELETE FROM THE DIRECTORY:
-            File::delete(public_path($user->profile->avatar) );
+            File::delete($user->profile->avatar);
             // DELETE FROM THE DATABASE:
             $user->profile->avatar= null;
         }
       $filename = uniqid() . '.' . $avatar->getClientOriginalExtension();
-      if (!File::exists(public_path('assets/images/avatars')))
+      if (!File::exists('assets/images/avatars'))
       {
-          File::makeDirectory(public_path('assets/images/avatars'), $mode = 0777, true, true);
+          File::makeDirectory('assets/images/avatars', $mode = 0777, true, true);
       }
-      \Image::make($avatar)->resize(320, 240)->save( public_path('assets/images/avatars/' . $filename ) );
+      \Image::make($avatar)->resize(320, 240)->save('assets/images/avatars/' . $filename );
 
-      $user->profile->avatar = '/assets/images/avatars/' . $filename;
+      $user->profile->avatar = 'assets/images/avatars/' . $filename;
       $user->profile->file_name = $filename;
       $user->profile->update();
     }
