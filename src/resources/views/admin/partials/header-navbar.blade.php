@@ -34,19 +34,19 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- The user image in the navbar-->
-            @if(isset($user) && $user->profile->avatar)
+            @if(isset($user) && $user != null && $user->profile->avatar)
               <img src="{{ URL::asset($user->profile->avatar)}}" class="user-image" alt="User Image">
             @else
               <img src="{{ URL::asset('assets/bower_components/AdminLTE/dist/img/default.png')}}" class="user-image" alt="User Image">
             @endif
 
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">{{isset($user) ? $user->name : ""}}</span>
+            <span class="hidden-xs">{{isset($user) && $user != null ? $user->name : ""}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
             <li class="user-header">
-              @if (isset($user) && $user->profile->avatar)
+              @if (isset($user) && $user != null && $user != null && $user->profile->avatar)
                 <img src="{{ URL::asset($user->profile->avatar)}}" class="img-circle" alt="User Image">
               @else
                 <img src="{{ URL::asset('assets/bower_components/AdminLTE/dist/img/default.png')}}" class="img-circle" alt="User Image">
@@ -54,9 +54,9 @@
               @endif
 
               <p>
-                {{isset($user) ? $user->name : "Alexander Pierce"}}<br/>
-                {{isset($user) ? $user->profile->experience : "Web Master"}}
-                <small>Member since {{isset($user) ? $user->created_at->diffForHumans() : "Nov. 2012"}}</small>
+                {{isset($user) && $user != null ? $user->name : "Alexander Pierce"}}<br/>
+                {{isset($user) && $user != null ? $user->profile->experience : "Web Master"}}
+                <small>Member since {{isset($user) && $user != null ? $user->created_at->diffForHumans() : "Nov. 2012"}}</small>
               </p>
             </li>
             <!-- Menu Body -->
@@ -77,7 +77,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="{{url('admin/profile', isset($user) ? $user->id : '')}}" class="btn btn-default btn-flat">Profile</a>
+                <a href="{{url('admin/profile', isset($user) && $user != null ? $user->id : '')}}" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
