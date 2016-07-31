@@ -6,14 +6,14 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        @if($user->profile->avatar != null)
+        @if(isset($user) && $user->profile->avatar != null)
           <img src="{{ URL::asset($user->profile->avatar)}}" class="img-circle" alt="User Image">
         @else
           <img src="{{ URL::asset('assets/bower_components/AdminLTE/dist/img/default.png')}}" class="img-circle" alt="User Image">
         @endif
       </div>
       <div class="pull-left info">
-        <p>{{$user != null ? $user->name : "Alexander Pierce"}}</p>
+        <p>{{isset($user) ? $user->name : "Alexander Pierce"}}</p>
         <!-- Status -->
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
@@ -34,6 +34,7 @@
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
       <li class="header">DASHBOARD MENU </li>
+      @if(isset($menus))
       @foreach($menus as $index => $menu)
         @if(count($menu->children) === 0)
           <li class="@if(Request::is($menu->url) == Request::path()) {{'active'}} @endif">
@@ -53,6 +54,7 @@
             </li>
           @endif
         @endforeach
+      @endif
       </ul>
       <!-- /.sidebar-menu -->
     </section>
