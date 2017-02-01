@@ -13,9 +13,7 @@ Introduction
 #####  with Composer
 
 ``` bash
-
  $ composer require "meccado/acl-admin-control-panel"
-
 ```
 
 To register the Service Provider edit **config/app.php** file and add to providers array:
@@ -30,19 +28,15 @@ Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider::class,
 ##### Publish files with:
 
 ```php
-
 $ php artisan vendor:publish  --force --provider="Meccado\AclAdminControlPanel\AclAdminControlPanelServiceProvider"
-
 ```
 
 ##### Migrate & Seed database files with:
 
 ```php
-
 $ composer dump-autoload
 
 $ php artisan migrate --seed
-
 ```
 
 ##### Admin Login Page & Credentials
@@ -56,6 +50,10 @@ Password: password
 
 Admin
 User: admin@domain.com
+Password: password
+
+General User
+User: user@gmail.com
 Password: password
 ```
 
