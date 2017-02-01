@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration
             $table->string('name');
             $table->text('title');
             $table->integer('parent_id')->default(0);
-            $table->integer('role_id')->unsigned();
+            //$table->integer('role_id')->unsigned();
             $table->text('icon');
             $table->smallInteger('sort_order');
             $table->timestamps();
