@@ -44,9 +44,9 @@ class User extends Authenticatable{
       //   return $this->roles()->lists('name')->contains( $role);
       // }
       if (is_array($role)) {
-        return  (!! count(array_intersect($role, $this->roles()->lists('name')->toarray())));
+        return  (!! count(array_intersect($role, $this->roles()->pluck('name')->toarray())));
       } else {
-        return in_array($role, $this->roles()->lists('name')->toarray());
+        return in_array($role, $this->roles()->pluck('name')->toarray());
       }
     }
 

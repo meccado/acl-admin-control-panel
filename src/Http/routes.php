@@ -48,14 +48,14 @@ View::composer('acl::*', function ($view) {
 	if(Auth::check()){
 		$menus = \App\Menu::whereHas('roles', function($q)
 		{
-				$roles = Auth::user()->roles->lists('id');
+				$roles = Auth::user()->roles->pluck('id');
 		    $q->whereIn('id', $roles)
 				->where('parent_id', 0);
 		})->orderBy('sort_order', 'ASC')->distinct()->get();
 
 		$menu_items = \App\Menu::whereHas('roles', function($q)
 		{
-				$roles = Auth::user()->roles->lists('id');
+				$roles = Auth::user()->roles->pluck('id');
 		    $q->whereIn('id', $roles);
 				//->where('parent_id', 0);
 		})->orderBy('sort_order', 'ASC')->distinct()->paginate();

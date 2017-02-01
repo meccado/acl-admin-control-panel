@@ -50,8 +50,8 @@ class MenuController extends Controller
   public function create()
   {
     if ( \Auth::user()->roles[0]->can('menu-create' ) ) {
-      $items = $this->menus->lists('name', 'id')->toarray();
-      $roles = Role::lists('name', 'id')->toarray();
+      $items = $this->menus->pluck('name', 'id')->toarray();
+      $roles = Role::pluck('name', 'id')->toarray();
       $selected = [];
       return \View::make('acl::admin.menus.create', [
         'items'    =>  $items,
@@ -111,9 +111,9 @@ class MenuController extends Controller
     {
       if ( \Auth::user()->roles[0]->can('menu-update' ) ) {
         $menu = $this->menus->findOrFail($id);
-        $items = $this->menus->lists('name', 'id')->toarray();
+        $items = $this->menus->pluck('name', 'id')->toarray();
         $roles = Role::lists('name', 'id')->toarray();
-        $selected = $menu->roles->lists('id')->toarray();
+        $selected = $menu->roles->pluck('id')->toarray();
         return view('admin.menus.edit', compact('menu', 'selected', 'roles', 'items'));
       }
       return \Redirect::route('admin.menus.index')->withErrors(trans('acl::dashboard.unauthorized_access'));
