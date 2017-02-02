@@ -7,7 +7,13 @@
 Route::group(['namespace' 	=> 'App\Http\Controllers',
 							'middleware' 	=> ['web', 'throttle'],
  							], function(){
-			Route::auth();
+			$app = $this->app;
+			$version = $app::VERSION;  
+			if(strcmp(substr($version, 0, 3) , "5.2" ) === 0){
+				Route::auth();	
+			}else{
+				Auth::routes();
+			}
 
 			//'prefix'=>'api/v1',
 			Route::group(['prefix' =>  'admin',
