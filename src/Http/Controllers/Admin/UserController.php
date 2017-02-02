@@ -44,7 +44,7 @@ class UserController extends Controller
   */
   public function create()
   {
-    $roles = Role::lists('name', 'id');
+    $roles = Role::pluck('name', 'id');
     return \View::make('admin.users.create', [
       'roles'              =>  $roles,
       'title'              => 'create',
@@ -98,7 +98,7 @@ class UserController extends Controller
     public function edit($id)
     {
       $user  = $this->users->findOrFail($id);
-      $roles = Role::lists('name', 'id');
+      $roles = Role::pluck('name', 'id');
       return \View::make('admin.users.edit', [
         'user'              =>  $user,
         'roles'              =>  $roles,
