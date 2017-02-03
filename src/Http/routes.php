@@ -12,7 +12,7 @@ Route::group(['namespace' 	=> 'App\Http\Controllers',
 			if(strcmp(substr($version, 0, 3) , "5.2" ) === 0){
 				Route::auth();	
 			}else{
-				Auth::routes();
+				//Auth::routes();
 			}
 
 			//'prefix'=>'api/v1',
